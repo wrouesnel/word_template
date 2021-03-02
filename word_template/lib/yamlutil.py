@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Union
 
 import ruamel.yaml
+from docxtpl import InlineImage
 
 
 class YamlUtilError(Exception):
@@ -27,8 +28,7 @@ yaml.constructor.yaml_constructors[
 ] = yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
 yaml.default_flow_style = False
 
-
-def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
+def read_yaml_dir(tpl, dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
     """
     Read a directory structure as though it was a YAML file and return the contained
     object.
@@ -47,7 +47,7 @@ def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
         # This directory is a sequence. Respect lexical order.
         for subpath in dpath.iterdir():
             if subpath.is_dir():
-                result.append(read_yaml_dir(subpath))
+                result.append(read_yaml_dir(tpl, subpath))
             elif subpath.is_file():
                 if subpath.name == SEQUENCE_FILE:
                     continue
@@ -59,6 +59,9 @@ def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
                             with subpath.open("rt") as f:
                                 result.append(yaml.load(f))
                             continue
+                        elif pchunks[1] in ("png",):
+                            result.append(InlineImage(tpl, subpath.as_posix()))
+                            continue
                     with subpath.open("rt") as f:
                         result.append(f.read())
         return result
@@ -66,7 +69,7 @@ def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
         result: Dict[str, Any] = {}
         for subpath in dpath.iterdir():
             if subpath.is_dir():
-                result[subpath.name] = read_yaml_dir(subpath)
+                result[subpath.name] = read_yaml_dir(tpl, subpath)
             else:
                 pchunks = subpath.name.rsplit(".", 1)
                 if len(pchunks) == 2:
@@ -74,6 +77,9 @@ def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
                         # This is a yaml file containing list element content.
                         with subpath.open("rt") as f:
                             result[pchunks[0]] = yaml.load(f)
+                        continue
+                    elif pchunks[1] in ("png",):
+                        result[pchunks[0]] = InlineImage(tpl, subpath.as_posix())
                         continue
                 with subpath.open("rt") as f:
                     result[subpath.name] = f.read()
