@@ -29,7 +29,7 @@ setup(
     install_requires=install_requires,
     include_package_data=True,
     classifiers=[
-        "License :: Other/Proprietary License",
+        "License :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
