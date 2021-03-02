@@ -28,6 +28,11 @@ def _get_context(inputs: List[str]):
 
 @click.group()
 def main():
+    """Word DOCX templating system
+
+    See https://docxtpl.readthedocs.io/en/latest/ for more details on using Jinja2 to
+    prepare a template.
+    """
     pass
 
 @main.command()
