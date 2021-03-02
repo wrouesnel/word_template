@@ -1,7 +1,3 @@
-/.dockerid
-/project_config.yaml
-/test-results
-
 /.idea
 /.vscode
 vendor/
@@ -9,17 +5,10 @@ vendor/
 /venv
 /.env
 
-# config-repo files
-/.deploy.service-account.json
-/.cienv
-/.docker-build
-/.docker-push
-/project_config.yml
-/.flake8
-/.black
-/.Dockerfile.build
+/.testreports
+/.coverage
 
-/.config.venv
+/.gitconfig
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -30,23 +19,23 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+/.Python
+/build/
+/develop-eggs/
+/dist/
+/downloads/
+/eggs/
+/.eggs/
+/lib/
+/lib64/
+/parts/
+/sdist/
+/var/
+/wheels/
+/*.egg-info/
+/.installed.cfg
+/*.egg
+/MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -59,76 +48,76 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
+/htmlcov/
+/.tox/
+/.nox/
+/.coverage
+/.coverage.*
+/.cache
+/nosetests.xml
+/coverage.xml
+/*.cover
+/.hypothesis/
+/.pytest_cache/
 
 # Translations
 *.mo
 *.pot
 
 # Django stuff:
-*.log
-local_settings.py
-db.sqlite3
+/*.log
+/local_settings.py
+/db.sqlite3
 
 # Flask stuff:
-instance/
-.webassets-cache
+/instance/
+/.webassets-cache
 
 # Scrapy stuff:
-.scrapy
+/.scrapy
 
 # Sphinx documentation
-docs/_build/
+/docs/_build/
 
 # PyBuilder
-target/
+/target/
 
 # Jupyter Notebook
-.ipynb_checkpoints
+/.ipynb_checkpoints
 
 # IPython
-profile_default/
-ipython_config.py
+/profile_default/
+/ipython_config.py
 
 # pyenv
-.python-version
+/.python-version
 
 # celery beat schedule file
-celerybeat-schedule
+/celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
 
 # Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+/.env
+/.venv
+/env/
+/venv/
+/ENV/
+/env.bak/
+/venv.bak/
 
 # Spyder project settings
-.spyderproject
-.spyproject
+/.spyderproject
+/.spyproject
 
 # Rope project settings
-.ropeproject
+/.ropeproject
 
 # mkdocs documentation
 /site
 
 # mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
+/.mypy_cache/
+/.dmypy.json
+/dmypy.json

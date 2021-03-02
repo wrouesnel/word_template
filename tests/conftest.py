@@ -21,12 +21,14 @@ def pytest_assertrepr_compare(op, left, right):
 
     return output
 
+
 @pytest.fixture
 def root_dir() -> Path:
     start = Path(__file__).parent
     while not (start / "pytest.ini").exists():
         start = start.parent
     return start
+
 
 @pytest.fixture
 def log():
@@ -54,4 +56,3 @@ def log():
     )
 
     yield log
-

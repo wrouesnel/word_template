@@ -4,17 +4,3 @@ structlog
 tzlocal
 natural
 ruamel.yaml
-
-
-# Test Requirements
-dictdiffer
-pytest
-pytest-cov
-funcsigs
-pytest-flask
-jinja2
-pytest-mock
-responses
-Faker
-freezegun
-pytest-localserver

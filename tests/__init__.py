@@ -5,13 +5,19 @@ import click
 import docxtpl
 import jinja2
 
-from lib.yamlutil import read_yaml_dir, yaml
+from word_template.lib.yamlutil import read_yaml_dir, yaml
 
 
 @click.command()
-@click.argument("template",type=click.Path(exists=True, readable=True, dir_okay=False, path_type=str),nargs=1)
-@click.argument("output",type=click.Path(exists=False, readable=True, dir_okay=False, path_type=str), nargs=1)
-@click.argument("inputs", type=click.Path(exists=True, readable=True, dir_okay=True, path_type=str), nargs=-1)
+@click.argument(
+    "template", type=click.Path(exists=True, readable=True, dir_okay=False, path_type=str), nargs=1
+)
+@click.argument(
+    "output", type=click.Path(exists=False, readable=True, dir_okay=False, path_type=str), nargs=1
+)
+@click.argument(
+    "inputs", type=click.Path(exists=True, readable=True, dir_okay=True, path_type=str), nargs=-1
+)
 def main(template: str, output: str, inputs: List[str]):
     """Execute a Word document template to the output file, using the supplied inputs.
 
@@ -21,7 +27,7 @@ def main(template: str, output: str, inputs: List[str]):
     doc = docxtpl.DocxTemplate(template)
 
     # Check context files make sense
-    context: Dict[str,Any] = {}
+    context: Dict[str, Any] = {}
     for input in inputs:
         input = Path(input)
         if input.is_dir():
@@ -34,6 +40,3 @@ def main(template: str, output: str, inputs: List[str]):
 
     doc.render(context=context, jinja_env=jinja_env)
     doc.save(output)
-
-if __name__ == "__main__":
-    main(auto_envvar_prefix="TEMPLATE")
