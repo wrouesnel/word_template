@@ -25,6 +25,7 @@ yaml = ruamel.yaml.YAML(typ="rt")
 yaml.constructor.yaml_constructors[
     "tag:yaml.org,2002:timestamp"
 ] = yaml.constructor.yaml_constructors["tag:yaml.org,2002:str"]
+yaml.default_flow_style = False
 
 
 def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
@@ -75,7 +76,7 @@ def read_yaml_dir(dname: PathLike) -> Union[List[Any], Dict[str, Any]]:
                             result[pchunks[0]] = yaml.load(f)
                         continue
                 with subpath.open("rt") as f:
-                    result[subpath.name] = f
+                    result[subpath.name] = f.read()
         return result
 
 

@@ -34,5 +34,5 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
     ],
-    entry_points={"console_scripts": ["blackbox-poller=word_template.cmd.__main__:entrypoint",],},
+    entry_points={"console_scripts": ["word-template=word_template.cmd.__main__:entry",],},
 )
